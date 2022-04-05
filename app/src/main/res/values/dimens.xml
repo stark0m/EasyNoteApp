@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius">55dp</dimen>
+    <dimen name="note_padding">10dp</dimen>
+    <dimen name="note_margin">1dp</dimen>
+</resources>
