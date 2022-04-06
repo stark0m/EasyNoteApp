@@ -18,7 +18,7 @@ public class NoteListPresenter {
 
     public void requestNotes(){
         List<Note> notes = repository.getNotes();
-        Log.i("BBBBB","Got from rep"+ notes.toString());
+
         view.showNotes(notes);
     }
 }

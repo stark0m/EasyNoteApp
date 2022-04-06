@@ -10,11 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyNoteApp" >
         <activity
-            android:name=".ui.NoteEditActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.MainActivity"
-            android:exported="true" >
+            android:exported="true"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

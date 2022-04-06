@@ -18,4 +18,8 @@ public class NoteEditPresenter {
     public void show(){
         view.edit(note);
     }
+
+    public void setNote(Note note) {
+        this.note = note;
+    }
 }
