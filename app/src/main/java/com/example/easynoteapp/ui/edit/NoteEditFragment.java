@@ -26,38 +26,40 @@ public class NoteEditFragment extends Fragment implements NoteEdit {
     private LinearLayout container;
     private NoteEditPresenter noteEditPresenter;
 
-    private static final String EXTRA_PARAM="EXTRA_PARAM";
+    private static final String EXTRA_PARAM = "EXTRA_PARAM";
+
     public static NoteEditFragment newInstance(Note note) {
-        
+
         Bundle args = new Bundle();
-        args.putParcelable(NotesListFragment.EXTRA_PARAM,note);
+        args.putParcelable(NotesListFragment.EXTRA_PARAM, note);
 
         NoteEditFragment fragment = new NoteEditFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setHasOptionsMenu(true);
 
 
-
-        Log.i("BBBBB","Fragment on create");
+        Log.i("BBBBB", "Fragment on create");
     }
-
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i("BBBBB","Creation view");
-        return inflater.inflate(R.layout.fragment_note_edit,container,false);
+        Log.i("BBBBB", "Creation view");
+        return inflater.inflate(R.layout.fragment_note_edit, container, false);
 
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i("BBBBB","View Created");
+        Log.i("BBBBB", "View Created");
 //        this.container =(LinearLayout) this.requireView();
         this.container = view.findViewById(R.id.note_edit_linear_layout);
 
@@ -83,12 +85,12 @@ public class NoteEditFragment extends Fragment implements NoteEdit {
 
                     }
                 });*/
-       Bundle arguments = getArguments();
-       if (arguments!=null && arguments.containsKey(NotesListFragment.EXTRA_PARAM)){
+        Bundle arguments = getArguments();
+        if (arguments != null && arguments.containsKey(NotesListFragment.EXTRA_PARAM)) {
             Note note = arguments.getParcelable(NotesListFragment.EXTRA_PARAM);
-        noteEditPresenter = new NoteEditPresenter(this,note);
-        noteEditPresenter.show();
-    } else{
+            noteEditPresenter = new NoteEditPresenter(this, note);
+            noteEditPresenter.show();
+        } else {
             Toast.makeText(requireContext(), "NO NOTE TO EDIT", Toast.LENGTH_SHORT).show();
         }
 
@@ -101,7 +103,6 @@ public class NoteEditFragment extends Fragment implements NoteEdit {
 
         EditText editText = container.findViewById(R.id.text_edit_note);
         MaterialToolbar toolbar = container.findViewById(R.id.app_bar_edit_note);
-
 
 
         editText.setText(note.getText());

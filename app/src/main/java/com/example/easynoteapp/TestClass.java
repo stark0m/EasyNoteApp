@@ -25,8 +25,49 @@ import com.example.easynoteapp.ui.list.NotesListFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class TestClass extends Fragment {
+    /*MainActivity DrawerLayout -> fragment-> NavigationView*/
+/*PopupMenu popupMenu = new PM(requireContext(),viev);
+popupMenu.GetMenuInflater().inflate(R.menu.menuname,popumMenu.getMenu());
+popupMenu.show();
+* */
+    /*CoordinatorLayout
+    AppbarLayout
+    MaterialToolbar
+    Nested ->behavor=...scroling_view_beh...
+    * */
+    /* MainActivity
+                Toolbar toolbar = findViewById(r.id.tolbar);
+                setSupportActionBar(toolbar);
 
+            *@Override
+      public boolean onCreateOptionsMenu(Menu menu) {
+          getMenuInflater().inflate(R.menu.menu_name,menu);
+          return super.onCreateOptionsMenu(menu);
+      }
+  */
+/*
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.app_bar_edit_note){
+            Toast.makeText(this, "text", Toast.LENGTH_SHORT).show();
+            return true;
+        }
 
+        if(item.getItemId()==R.id.app_bar_edit_note2){
+            Toast.makeText(this, "text2", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }*
+
+        @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) { //Frame
+        super.onCreate(savedInstanceState);
+//        setHasOptionsMenu(true);
+
+/
+ */
     public TestClass() {
         super(R.layout.fragment_note_edit);
     }
@@ -88,7 +129,7 @@ public class TestClass extends Fragment {
             public void run() {
                 Toast.makeText(requireContext(), "HELLO", Toast.LENGTH_SHORT).show();
             }
-        },2000);
+        }, 2000);
 //++++++++++++++++++++++++++++++++++++++++++++
         /* @Nullable
     @Override
@@ -99,7 +140,7 @@ public class TestClass extends Fragment {
     }*/
 //++++++++++++++++++++++++++++++++++++++++++++
         Bundle arguments = getArguments();
-        Toast.makeText(requireContext(),"text",Toast.LENGTH_SHORT  ).show();
+        Toast.makeText(requireContext(), "text", Toast.LENGTH_SHORT).show();
 
         getParentFragmentManager().popBackStack();
         /*
@@ -118,7 +159,7 @@ public class TestClass extends Fragment {
                 .commit();
                 .commitNow();
                 */
-    //++++++++++++++++++++++++++++++++++++++++++++
+        //++++++++++++++++++++++++++++++++++++++++++++
     }
 
     public static void main(String[] args) {
