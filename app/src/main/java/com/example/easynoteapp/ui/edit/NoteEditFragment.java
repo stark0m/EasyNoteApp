@@ -4,16 +4,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
 
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
@@ -21,10 +21,10 @@ import com.example.easynoteapp.ui.list.NotesListFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
 
-public class NoteEditFragment extends Fragment implements NoteEdit {
+public class NoteEditFragment extends Fragment {
 
-    private LinearLayout container;
-    private NoteEditPresenter noteEditPresenter;
+
+    private NoteEditPresenter<CoordinatorLayout> noteEditPresenter;
 
     private static final String EXTRA_PARAM = "EXTRA_PARAM";
 
@@ -41,8 +41,6 @@ public class NoteEditFragment extends Fragment implements NoteEdit {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
-
 
         Log.i("BBBBB", "Fragment on create");
     }
@@ -61,16 +59,45 @@ public class NoteEditFragment extends Fragment implements NoteEdit {
         super.onViewCreated(view, savedInstanceState);
         Log.i("BBBBB", "View Created");
 //        this.container =(LinearLayout) this.requireView();
-        this.container = view.findViewById(R.id.note_edit_linear_layout);
+        CoordinatorLayout container = view.findViewById(R.id.note_edit_coordinator_layout);
+        Bundle args = getArguments();
+        noteEditPresenter = new NoteEditPresenter(this, container, args);
 
-        view.findViewById(R.id.app_bar_edit_note).setOnClickListener(new View.OnClickListener() {
+
+        Toolbar.OnMenuItemClickListener menuItemClickListener = new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                noteEditPresenter.action(item.getItemId());
+                return false;
+            }
+        };
+        MaterialToolbar toolbar = view.findViewById(R.id.app_bar_edit_note);
+        toolbar.setOnMenuItemClickListener(menuItemClickListener);
+
+
+
+        //        topMenu.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem menuItem) {
+////                noteEditPresenter.action(menuItem.getItemId());
+//                return false;
+//            }
+//        });
+//        view.findViewById(R.id.menu_button_back).setOnClickListener(baseClickListener);
+//        view.findViewById(R.id.menu_button_share).setOnClickListener(baseClickListener);
+        //    view.findViewById(R.id.menu_button_find).setOnClickListener(baseClickListener);
+//        view.findViewById(R.id.menu_button_delete).setOnClickListener(baseClickListener);
+//        View temp = view.findViewById(R.id.menu_button_delete);
+//temp.setOnClickListener(baseClickListener);
+
+       /* view.findViewById(R.id.app_bar_edit_note).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getParentFragmentManager()
                         .popBackStack();
 
             }
-        });
+        });*/
 
 
 
@@ -85,29 +112,29 @@ public class NoteEditFragment extends Fragment implements NoteEdit {
 
                     }
                 });*/
-        Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey(NotesListFragment.EXTRA_PARAM)) {
-            Note note = arguments.getParcelable(NotesListFragment.EXTRA_PARAM);
-            noteEditPresenter = new NoteEditPresenter(this, note);
-            noteEditPresenter.show();
-        } else {
-            Toast.makeText(requireContext(), "NO NOTE TO EDIT", Toast.LENGTH_SHORT).show();
-        }
 
 
     }
 
-    @Override
-    public void edit(@Nullable Note note) {
-//       View editView = getLayoutInflater().inflate(R.layout.fragment_note_edit,container,false);
-
-        EditText editText = container.findViewById(R.id.text_edit_note);
-        MaterialToolbar toolbar = container.findViewById(R.id.app_bar_edit_note);
-
-
-        editText.setText(note.getText());
-
-        toolbar.setTitle(note.getDescription());
-
-    }
+//    @Override
+//    public void show(@Nullable Note note) {
+////       View editView = getLayoutInflater().inflate(R.layout.fragment_note_edit,container,false);
+//
+//
+//
+//
+//        EditText editText = container.findViewById(R.id.text_edit_note);
+//        MaterialToolbar toolbar = container.findViewById(R.id.app_bar_edit_note);
+//
+//
+//        editText.setText(note.getText());
+//
+//        toolbar.setTitle(note.getDescription());
+//
+//    }
+//
+//    @Override
+//    public void message(String message) {
+//        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+//    }
 }

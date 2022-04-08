@@ -1,6 +1,11 @@
 package com.example.easynoteapp.ui.list;
 
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.example.easynoteapp.domain.Note;
 import com.example.easynoteapp.domain.NotesRepository;
@@ -21,4 +26,5 @@ public class NoteListPresenter {
 
         view.showNotes(notes);
     }
+
 }

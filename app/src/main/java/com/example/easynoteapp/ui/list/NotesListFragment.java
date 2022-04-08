@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -50,6 +51,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
         container = view.findViewById(R.id.notes_list_linear_layout);
         presenter.requestNotes();
+
+
         Log.i("AAAAA","NLF onViewCreated");
     }
 

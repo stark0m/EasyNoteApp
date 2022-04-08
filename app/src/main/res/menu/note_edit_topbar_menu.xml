@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_edit_note">
+
+    <item
+        android:id="@+id/menu_button_back"
+        android:icon="@drawable/arrow_back_24"
+        android:title="@string/back_button"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_button_share"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="@string/share_button"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/menu_button_find"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/find_button"/>
+    <item
+        android:id="@+id/menu_button_delete"
+        android:icon="@drawable/ic_baseline_share_24"
+        app:showAsAction="collapseActionView"
+        android:title="@string/button_delete"/>
+</menu>

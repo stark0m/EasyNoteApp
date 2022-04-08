@@ -25,6 +25,58 @@ import com.example.easynoteapp.ui.list.NotesListFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class TestClass extends Fragment {
+    /*
+    * public class ThemePresenterImpl implements ThemePresenter {
+    private Context context;
+    private SharedPreferences preferences;
+
+    private static final String SETTINGS_FILE_NAME = "THEMES";
+    private static final String THEMM_KEY = "THEME";
+
+
+
+    @Override
+    public ThemeEnum setTheme(Context context) {
+
+        preferences = context.getSharedPreferences(SETTINGS_FILE_NAME,Context.MODE_PRIVATE);
+        String savedTheme = preferences.getString(THEMM_KEY,"default");
+        ThemeEnum newTheme = ThemeEnum.ONE;
+
+        for (ThemeEnum th : ThemeEnum.values() ) {
+            if (savedTheme.equals(th.getKey())){
+                return th;
+            }
+
+        }
+        return newTheme;
+
+
+        }
+
+    @Override
+    public void saveTheme(ThemeEnum theme) {
+        preferences.edit().putString(THEMM_KEY,theme.getKey()).apply();
+    }
+
+}*/
+    /* findViewById(R.id.open_manual).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri google = Uri.parse("https://yandex.ru");
+
+                Intent googleIntent = new Intent(Intent.ACTION_VIEW, google);
+
+                startActivity(Intent.createChooser(googleIntent, ""));
+            }
+        });
+        */
+    /*
+    Intent intent = new Intent(CalculatorActivity.this, TextInputActivity.class);
+                startActivity(intent);
+    * */
+
+
+
     /*MainActivity DrawerLayout -> fragment-> NavigationView*/
 /*PopupMenu popupMenu = new PM(requireContext(),viev);
 popupMenu.GetMenuInflater().inflate(R.menu.menuname,popumMenu.getMenu());

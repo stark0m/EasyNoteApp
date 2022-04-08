@@ -4,4 +4,8 @@
     <string name="temp_lorem">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique libero porta nisl viverra ultrices. Proin interdum, magna eu convallis pretium, massa mauris porttitor ante, eget pretium ex magna fermentum erat. In dictum dignissim ligula at sodales. Quisque ullamcorper leo magna. Vivamus suscipit leo magna, eu cursus sem viverra in. Nunc sit amet nisl pharetra, laoreet erat pellentesque, consequat nisl. Nullam ac dolor eget mauris mattis imperdiet id ut ante. Nam elit tortor, suscipit a mattis sed, venenatis eu quam. Integer dignissim mi risus, at pretium nibh elementum ac. Curabitur convallis tincidunt massa, ac dictum erat blandit a. Vivamus consectetur gravida enim. Praesent id mauris consectetur dolor porttitor euismod eget quis diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam auctor ex vel sem pellentesque, sit amet euismod lorem fermentum. Integer semper tempor nunc, ut luctus augue sagittis quis.  Vivamus eu odio euismod, congue velit at, gravida mi. Nam pulvinar scelerisque urna a gravida. Nunc scelerisque consectetur quam sed accumsan. Maecenas nec lacus a tellus cursus lobortis. Morbi sit amet consectetur augue, sit amet aliquam massa. "</string>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back_button">Back</string>
+    <string name="share_button">Share</string>
+    <string name="find_button">FInd</string>
+    <string name="button_delete">Delete</string>
 </resources>
