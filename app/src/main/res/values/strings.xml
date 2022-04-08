@@ -10,4 +10,8 @@
     <string name="button_delete">Delete</string>
     <string name="close">Close</string>
     <string name="add">Add</string>
+    <string name="about">about</string>
+    <string name="copyright">copyright</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
 </resources>

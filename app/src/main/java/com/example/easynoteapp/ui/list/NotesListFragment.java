@@ -24,6 +24,8 @@ import androidx.fragment.app.Fragment;
 import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
 import com.example.easynoteapp.domain.NotesRepositoryImpl;
+import com.example.easynoteapp.ui.MainActivity;
+import com.example.easynoteapp.ui.NavDrawable;
 import com.example.easynoteapp.ui.edit.NoteEditFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -60,6 +62,12 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
         container = view.findViewById(R.id.notes_list_linear_layout);
         presenter.requestNotes();
+
+
+
+
+
+
 
 
         Log.i("AAAAA","NLF onViewCreated");
@@ -158,6 +166,10 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
       MaterialToolbar toolbar = getView().findViewById(R.id.app_bar_list_note);
         toolbar.setOnMenuItemClickListener(menuItemClickListener);
+        if (requireActivity() instanceof NavDrawable){
+            ((NavDrawable) requireActivity()).setAppToolbar(toolbar);
+        }
+
 
 
     }

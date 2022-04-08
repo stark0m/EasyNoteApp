@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 
 import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
+import com.example.easynoteapp.ui.MainActivity;
+import com.example.easynoteapp.ui.NavDrawable;
 import com.example.easynoteapp.ui.list.NoteListPresenter;
 import com.example.easynoteapp.ui.list.NotesListFragment;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -55,6 +57,11 @@ public class NoteEditPresenter<T extends View> implements NoteEdit {
 
         EditText editText = view.findViewById(R.id.text_edit_note);
         MaterialToolbar toolbar = view.findViewById(R.id.app_bar_edit_note);
+
+
+        if (fragment.requireActivity() instanceof NavDrawable){
+            ((NavDrawable) fragment.requireActivity()).setAppToolbar(toolbar);
+        }
 
 
         editText.setText(note.getText());
