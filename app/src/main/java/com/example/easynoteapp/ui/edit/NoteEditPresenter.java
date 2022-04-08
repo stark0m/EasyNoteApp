@@ -12,32 +12,37 @@ import androidx.annotation.Nullable;
 
 import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
+import com.example.easynoteapp.ui.list.NoteListPresenter;
 import com.example.easynoteapp.ui.list.NotesListFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class NoteEditPresenter<T extends View > implements NoteEdit {
+public class NoteEditPresenter<T extends View> implements NoteEdit {
 
     private T view;
     private Note note;
-    private NoteEditFragment viewObj;
+    private NoteEditFragment fragment;
 
 
-
-    public NoteEditPresenter(NoteEditFragment context, T view, @Nullable Bundle bundle) {
-        this.viewObj = context;
-        this.view = view;
-
-
+    public static NoteEditPresenter newInstance(NoteEditFragment fragment, @Nullable Bundle bundle) {
+        NoteEditPresenter instance = new NoteEditPresenter();
+        instance.fragment = fragment;
+        instance.view = fragment.getView();
         if (bundle != null && bundle.containsKey(NotesListFragment.EXTRA_PARAM)) {
-            this.setNote(bundle.getParcelable(NotesListFragment.EXTRA_PARAM));
+            instance.setNote(bundle.getParcelable(NotesListFragment.EXTRA_PARAM));
 
-            show();
+            instance.show();
 
         } else {
-            Toast.makeText(viewObj.requireContext(), "NO NOTE TO EDIT", Toast.LENGTH_SHORT).show();
+            Toast.makeText(fragment.requireContext(), "NO NOTE TO EDIT", Toast.LENGTH_SHORT).show();
         }
 
+        return instance;
     }
+
+    ;
+
+
+
 
 
     public void setNote(Note note) {
@@ -60,28 +65,29 @@ public class NoteEditPresenter<T extends View > implements NoteEdit {
 
     @Override
     public void message(String message) {
-        Toast.makeText(viewObj.requireContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void action(@IdRes int id) {
-        switch (id){
-            case R.id.menu_button_back:{
-                viewObj.getParentFragmentManager()
+        switch (id) {
+            case R.id.menu_button_back: {
+//                message(fragment.getView().getClass().toString());
+                fragment.getParentFragmentManager()
                         .popBackStack();
 
             }
-            case R.id.menu_button_share:{
+            case R.id.menu_button_share: {
                 message("Share clicked");
-                Log.i("BBBBB","CLICKED SHARE");
-
+                Log.i("BBBBB", "CLICKED SHARE");
+                break;
             }
-            case R.id.menu_button_find:{
+            case R.id.menu_button_find: {
                 message("Find clicked");
-
+                break;
             }
-            case R.id.menu_button_delete:{
+            case R.id.menu_button_delete: {
                 message("Delete clicked");
-
+                break;
             }
 
         }

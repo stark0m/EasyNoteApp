@@ -3,4 +3,5 @@
     <dimen name="corner_radius">55dp</dimen>
     <dimen name="note_padding">10dp</dimen>
     <dimen name="note_margin">1dp</dimen>
+    <dimen name="close_button">10dp</dimen>
 </resources>

@@ -7,18 +7,27 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
 import com.example.easynoteapp.domain.NotesRepositoryImpl;
 import com.example.easynoteapp.ui.edit.NoteEditFragment;
+import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.Date;
 import java.util.List;
 
 public class NotesListFragment extends Fragment implements NotesListView {
@@ -69,10 +78,12 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
             TextView description = noteVIew.findViewById(R.id.note_description);
 //            description.setText("DESCR");
-            description.setText(note.getDescription());
+            String descriptoon = note.getDescription();
+            description.setText(descriptoon);
 
             TextView date = noteVIew.findViewById(R.id.note_date_creation);
 //            date.setText("DATE");
+
             date.setText(note.getDate().toString());
 
             Log.i("AAAAA","note Text = "+ note.getText().toString());
@@ -81,7 +92,34 @@ public class NotesListFragment extends Fragment implements NotesListView {
             TextView text = noteVIew.findViewById(R.id.note_text);
             text.setText(long40SymbText);
 
-            noteVIew.setOnClickListener(new View.OnClickListener() {
+            ImageView closeButton = noteVIew.findViewById(R.id.button_close);
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PopupMenu popupMenu = new PopupMenu(requireContext(),view);
+                    popupMenu.getMenuInflater().inflate(R.menu.menu_close,popupMenu.getMenu());
+                    popupMenu.show();
+
+                    PopupMenu.OnMenuItemClickListener del = new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            if (item.getItemId()==R.id.id_menu_item__delete){
+//                                presenter.deleteNote(note);
+                                Toast.makeText(requireContext(), "DELETED", Toast.LENGTH_SHORT).show();
+
+                            }
+                            return false;
+                        }
+                    };
+
+
+
+                    popupMenu.setOnMenuItemClickListener(del);
+                }
+            });
+
+
+            text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -108,5 +146,19 @@ public class NotesListFragment extends Fragment implements NotesListView {
            Log.i("AAAAA","NoteLIstFormat add note");
             container.addView(noteVIew);
         }
+        Toolbar.OnMenuItemClickListener menuItemClickListener = new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+//                presenter.action(item.getItemId());
+                Toast.makeText(requireContext(), "New Note", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        };
+
+
+      MaterialToolbar toolbar = getView().findViewById(R.id.app_bar_list_note);
+        toolbar.setOnMenuItemClickListener(menuItemClickListener);
+
+
     }
 }

@@ -59,6 +59,19 @@ public class TestClass extends Fragment {
     }
 
 }*/
+
+    /*        getParentFragmentManager()
+                .setFragmentResultListener(NotesListFragment.NOTE_SELECTED, getViewLifecycleOwner(), new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        Log.i("BBBBB","SWITCED NOTE");
+                        Note note = result.getParcelable(EXTRA_PARAM);
+                        edit(note);
+
+
+                    }
+                });*/
+
     /* findViewById(R.id.open_manual).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

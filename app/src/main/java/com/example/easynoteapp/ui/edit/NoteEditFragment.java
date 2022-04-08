@@ -26,8 +26,6 @@ public class NoteEditFragment extends Fragment {
 
     private NoteEditPresenter<CoordinatorLayout> noteEditPresenter;
 
-    private static final String EXTRA_PARAM = "EXTRA_PARAM";
-
     public static NoteEditFragment newInstance(Note note) {
 
         Bundle args = new Bundle();
@@ -41,8 +39,7 @@ public class NoteEditFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.i("BBBBB", "Fragment on create");
+//        Log.i("BBBBB", "Fragment on create");
     }
 
 
@@ -58,11 +55,10 @@ public class NoteEditFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.i("BBBBB", "View Created");
-//        this.container =(LinearLayout) this.requireView();
-        CoordinatorLayout container = view.findViewById(R.id.note_edit_coordinator_layout);
-        Bundle args = getArguments();
-        noteEditPresenter = new NoteEditPresenter(this, container, args);
 
+
+        Bundle args = getArguments();
+        noteEditPresenter = NoteEditPresenter.newInstance(this, args);
 
         Toolbar.OnMenuItemClickListener menuItemClickListener = new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -71,70 +67,13 @@ public class NoteEditFragment extends Fragment {
                 return false;
             }
         };
+
+
         MaterialToolbar toolbar = view.findViewById(R.id.app_bar_edit_note);
         toolbar.setOnMenuItemClickListener(menuItemClickListener);
 
 
-
-        //        topMenu.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem menuItem) {
-////                noteEditPresenter.action(menuItem.getItemId());
-//                return false;
-//            }
-//        });
-//        view.findViewById(R.id.menu_button_back).setOnClickListener(baseClickListener);
-//        view.findViewById(R.id.menu_button_share).setOnClickListener(baseClickListener);
-        //    view.findViewById(R.id.menu_button_find).setOnClickListener(baseClickListener);
-//        view.findViewById(R.id.menu_button_delete).setOnClickListener(baseClickListener);
-//        View temp = view.findViewById(R.id.menu_button_delete);
-//temp.setOnClickListener(baseClickListener);
-
-       /* view.findViewById(R.id.app_bar_edit_note).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getParentFragmentManager()
-                        .popBackStack();
-
-            }
-        });*/
-
-
-
-/*        getParentFragmentManager()
-                .setFragmentResultListener(NotesListFragment.NOTE_SELECTED, getViewLifecycleOwner(), new FragmentResultListener() {
-                    @Override
-                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        Log.i("BBBBB","SWITCED NOTE");
-                        Note note = result.getParcelable(EXTRA_PARAM);
-                        edit(note);
-
-
-                    }
-                });*/
-
-
     }
 
-//    @Override
-//    public void show(@Nullable Note note) {
-////       View editView = getLayoutInflater().inflate(R.layout.fragment_note_edit,container,false);
-//
-//
-//
-//
-//        EditText editText = container.findViewById(R.id.text_edit_note);
-//        MaterialToolbar toolbar = container.findViewById(R.id.app_bar_edit_note);
-//
-//
-//        editText.setText(note.getText());
-//
-//        toolbar.setTitle(note.getDescription());
-//
-//    }
-//
-//    @Override
-//    public void message(String message) {
-//        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-//    }
+
 }
