@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2155" />
+        <entry key="app/src/main/res/drawable/ic_baseline_android_24.xml" value="0.2155" />
+        <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2155" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2155" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.1760222125575159" />
         <entry key="app/src/main/res/layout-land/fragments_notes_list.xml" value="0.1585997272059534" />
@@ -14,7 +16,9 @@
         <entry key="app/src/main/res/layout/fragments_notes_list.xml" value="0.13877614339192706" />
         <entry key="app/src/main/res/layout/item_note.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_note_edit.xml" value="0.328125" />
+        <entry key="app/src/main/res/layout/naw_drawler_header.xml" value="0.46145833333333336" />
         <entry key="app/src/main/res/menu/menu_close.xml" value="0.17760416666666667" />
+        <entry key="app/src/main/res/menu/menu_nav_drawer.xml" value="0.46145833333333336" />
         <entry key="app/src/main/res/menu/note_edit_topbar_menu.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/menu/note_list_topbar_menu.xml" value="0.25677083333333334" />
       </map>
