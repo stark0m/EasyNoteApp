@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.example.easynoteapp.domain.Note;
 import com.example.easynoteapp.domain.NotesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NoteListPresenter {
@@ -22,7 +23,7 @@ public class NoteListPresenter {
     }
 
     public void requestNotes(){
-        List<Note> notes = repository.getNotes();
+        ArrayList<Note> notes = repository.getNotes();
 
         view.showNotes(notes);
     }

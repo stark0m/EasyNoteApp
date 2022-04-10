@@ -14,4 +14,5 @@
     <string name="copyright">copyright</string>
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+    <string name="edit">Edit</string>
 </resources>

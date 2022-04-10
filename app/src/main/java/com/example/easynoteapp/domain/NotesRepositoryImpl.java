@@ -12,9 +12,9 @@ public class NotesRepositoryImpl implements NotesRepository{
     }
 
     @Override
-    public List<Note> getNotes() {
+    public ArrayList<Note> getNotes() {
 
-        List<Note> notesList = new ArrayList<>();
+        ArrayList<Note> notesList = new ArrayList<>();
         notesList.add(new Note(UUID.randomUUID().toString(),"first description","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique libero porta nisl viverra ultrices. Proin interdum, magna eu convallis pretium, massa mauris porttitor ante, eget pretium ex magna fermentum erat. In dictum dignissim ligula at sodales. Quisque ullamcorper leo magna. Vivamus suscipit leo magna, eu cursus sem viverra in. Nunc sit amet nisl pharetra, laoreet erat pellentesque, consequat nisl. Nullam ac dolor eget mauris mattis imperdiet id ut ante. Nam elit tortor, suscipit a mattis sed, venenatis eu quam. Integer dignissim mi risus, at pretium nibh elementum ac. Curabitur convallis tincidunt massa, ac dictum erat blandit a. Vivamus consectetur gravida enim. Praesent id mauris consectetur dolor porttitor euismod eget quis diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam auctor ex vel sem pellentesque, sit amet euismod lorem fermentum. Integer semper tempor nunc, ut luctus augue sagittis quis. "));
         notesList.add(new Note(UUID.randomUUID().toString(),"Second description","Vivamus eu odio euismod, congue velit at, gravida mi. Nam pulvinar scelerisque urna a gravida. Nunc scelerisque consectetur quam sed accumsan. Maecenas nec lacus a tellus cursus lobortis. Morbi sit amet consectetur augue, sit amet aliquam massa. Pellentesque metus massa, mattis quis consectetur vel, pharetra nec diam. Nulla a lectus eu purus lacinia pulvinar non ac lorem. "));
         notesList.add(new Note(UUID.randomUUID().toString(),"HGello description"," Donec fermentum purus vel faucibus dictum. Curabitur tristique, velit et ultrices suscipit, odio elit maximus nisi, quis rhoncus purus tellus vitae lectus. Integer aliquet, dui at tristique posuere, velit magna blandit erat, eu tempus nisi felis fermentum est. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu felis non odio pulvinar tristique. Donec pulvinar sapien quis nibh imperdiet, a vulputate quam efficitur."));

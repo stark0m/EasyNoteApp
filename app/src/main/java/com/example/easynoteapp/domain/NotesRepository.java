@@ -1,8 +1,9 @@
 package com.example.easynoteapp.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface NotesRepository {
-    List<Note> getNotes();
+    ArrayList<Note> getNotes();
 
 }
