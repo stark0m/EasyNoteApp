@@ -1,19 +1,17 @@
 package com.example.easynoteapp.ui;
 
+import static com.example.easynoteapp.ui.listfragment.NotesListFragment.NOTE_CHANGED;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.Window;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.easynoteapp.R;
+import com.example.easynoteapp.ui.listfragment.NotesListFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class MainActivity extends AppCompatActivity implements NavDrawable {
@@ -24,6 +22,28 @@ public class MainActivity extends AppCompatActivity implements NavDrawable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        getSupportFragmentManager().
+                beginTransaction()
+                .replace(R.id.main_activity_note_list, NotesListFragment.NewInstance(null))
+                .commit();
+
+
+        getSupportFragmentManager()
+                .setFragmentResultListener(NOTE_CHANGED, this, new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+
+                        getSupportFragmentManager().
+                                beginTransaction()
+                                .replace(R.id.main_activity_note_list, NotesListFragment.NewInstance(result))
+                                .commit();
+
+                    }
+
+
+                });
+
 
 //59.56!
     }

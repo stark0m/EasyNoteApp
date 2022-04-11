@@ -1,4 +1,4 @@
-package com.example.easynoteapp.ui.edit;
+package com.example.easynoteapp.ui.edit.fragmentinterface;
 
 import androidx.annotation.Nullable;
 

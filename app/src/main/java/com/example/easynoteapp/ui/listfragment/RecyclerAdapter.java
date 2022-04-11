@@ -1,6 +1,6 @@
-package com.example.easynoteapp.ui.list;
+package com.example.easynoteapp.ui.listfragment;
 
-import static com.example.easynoteapp.ui.list.NotesListFragment.COUNT_OUTPUT_LONG_DESCRIPTION_CHARS;
+import static com.example.easynoteapp.ui.listfragment.NotesListFragment.COUNT_OUTPUT_LONG_DESCRIPTION_CHARS;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +23,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     private Note noteSelected;
     private int noteSelectedIndex;
 
+
+
     public void deleteSelectedNote(){
-        data.remove(noteSelectedIndex);
+        this.data.remove(noteSelectedIndex);
     }
-    public Note getNoteSelected() {
-        return noteSelected;
-    }
+
 
     public void setNoteSelected(Note noteSelected) {
         this.noteSelected = noteSelected;
@@ -46,8 +46,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         this.fragment = fragment;
     }
 
+
+
+
     public interface ItemClicked {
-         void onItemClicked(Note note);
+         void onItemClicked(int index);
          void onItemLongClicked(Note note,int index);
 
     }
@@ -66,7 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     private ItemClicked iC;
 
     public void getData(ArrayList<Note> data) {
-        this.data = data;
+        this.data = new ArrayList<>(data);
     }
 
     @NonNull
@@ -84,8 +87,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         String date = data.get(position).getDate().toString();
 
 
-        holder.description.setText(description);
-        String long40SymbText = String.copyValueOf(text.toCharArray(), 0, COUNT_OUTPUT_LONG_DESCRIPTION_CHARS);
+
+        int min_length = text.length();
+        if(min_length>COUNT_OUTPUT_LONG_DESCRIPTION_CHARS) {
+            min_length =COUNT_OUTPUT_LONG_DESCRIPTION_CHARS;
+        }
+        String long40SymbText = String.copyValueOf(text.toCharArray(), 0, min_length);
         holder.text.setText(long40SymbText);
         holder.date.setText(date);
     }
@@ -97,13 +104,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView description;
+
         TextView text;
         TextView date;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            description = itemView.findViewById(R.id.note_description);
+
             text = itemView.findViewById(R.id.note_text);
             date = itemView.findViewById(R.id.note_date_creation);
 
@@ -114,7 +121,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 @Override
                 public void onClick(View view) {
                     if (iC != null) {
-                        iC.onItemClicked(data.get(getAdapterPosition()));
+
+                        noteSelected = data.get(getAdapterPosition());
+                        noteSelectedIndex = getAdapterPosition();
+                        iC.onItemClicked(noteSelectedIndex);
                     }
                 }
             });
@@ -122,7 +132,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 @Override
                 public boolean onLongClick(View view) {
                     if (iC != null) {
-                        iC.onItemLongClicked(data.get(getAdapterPosition()),getAdapterPosition());
+                        noteSelected = data.get(getAdapterPosition());
+                        noteSelectedIndex = getAdapterPosition();
+
+                        iC.onItemLongClicked(noteSelected,noteSelectedIndex);
                     }
                     view.showContextMenu();
 

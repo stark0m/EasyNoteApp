@@ -16,36 +16,8 @@
     android:background="@color/note_list_color"
     android:id="@+id/id_note">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
-    <TextView
-        android:id="@+id/note_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
 
 
-        android:textAppearance="@style/TextAppearance.Material3.ActionBar.Title"
-
-        tools:text="description"/>
-    <ImageButton
-        android:layout_width="@dimen/close_button"
-        android:layout_height="@dimen/close_button"
-        android:src="@drawable/ic_baseline_close_24"
-        android:id="@+id/button_close"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-    <TextView
-        android:id="@+id/note_date_creation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.Compat.Notification.Info"
-        tools:text="Date"/>
 
     <TextView
         android:id="@+id/note_text"
@@ -53,6 +25,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         tools:text="Long text description 40length"/>
+    <TextView
+        android:id="@+id/note_date_creation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Compat.Notification.Info"
+        tools:text="Date"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/drawline_height"

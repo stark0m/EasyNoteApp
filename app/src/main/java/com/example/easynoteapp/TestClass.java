@@ -1,28 +1,19 @@
 package com.example.easynoteapp;
 
-import static com.example.easynoteapp.ui.list.NotesListFragment.EXTRA_PARAM;
+import static com.example.easynoteapp.ui.listfragment.NotesListFragment.KEY_NOTE_ITEM;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
-import com.example.easynoteapp.ui.edit.NoteEditFragment;
-import com.example.easynoteapp.ui.list.NotesListFragment;
-import com.google.android.material.appbar.MaterialToolbar;
+import com.example.easynoteapp.ui.listfragment.NotesListFragment;
 
 public class TestClass extends Fragment {
     /*
@@ -175,7 +166,7 @@ popupMenu.show();
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         Log.i("BBBBB", "SWITCED NOTE");
-                        Note note = result.getParcelable(EXTRA_PARAM);
+                        Note note = result.getParcelable(KEY_NOTE_ITEM);
 
 
                     }
