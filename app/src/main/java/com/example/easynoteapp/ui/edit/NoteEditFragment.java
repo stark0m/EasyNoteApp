@@ -4,110 +4,140 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
-import com.example.easynoteapp.ui.list.NotesListFragment;
+import com.example.easynoteapp.ui.NavDrawable;
+import com.example.easynoteapp.ui.edit.fragmentinterface.NoteEdit;
+import com.example.easynoteapp.ui.edit.presenter.NoteEditPresenter;
+import com.example.easynoteapp.ui.listfragment.NotesListFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
 
 public class NoteEditFragment extends Fragment implements NoteEdit {
 
-    private LinearLayout container;
-    private NoteEditPresenter noteEditPresenter;
 
-    private static final String EXTRA_PARAM = "EXTRA_PARAM";
+    private NoteEditPresenter<CoordinatorLayout> noteEditPresenter;
+    EditText text;
+    Note editableNote;
+    MaterialToolbar toolbar;
+    View view;
 
-    public static NoteEditFragment newInstance(Note note) {
+    public static NoteEditFragment newInstance(Note note, int editNoteIndex) {
 
         Bundle args = new Bundle();
-        args.putParcelable(NotesListFragment.EXTRA_PARAM, note);
+        args.putParcelable(NotesListFragment.KEY_NOTE_ITEM, note);
+        args.putInt(NotesListFragment.KEY_NOTE_INDEX, editNoteIndex);
 
         NoteEditFragment fragment = new NoteEditFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
-
-
-        Log.i("BBBBB", "Fragment on create");
     }
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i("BBBBB", "Creation view");
         return inflater.inflate(R.layout.fragment_note_edit, container, false);
 
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        noteEditPresenter.saveNote(editableNote);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.i("BBBBB", "View Created");
-//        this.container =(LinearLayout) this.requireView();
-        this.container = view.findViewById(R.id.note_edit_linear_layout);
+        text = view.findViewById(R.id.text_edit_note);
+        toolbar = view.findViewById(R.id.app_bar_edit_note);
+        this.view = view;
 
-        view.findViewById(R.id.app_bar_edit_note).setOnClickListener(new View.OnClickListener() {
+        Bundle bundle = getArguments();
+        if (bundle != null && bundle.containsKey(NotesListFragment.KEY_NOTE_ITEM)) {
+            editableNote = bundle.getParcelable(NotesListFragment.KEY_NOTE_ITEM);
+
+        }
+
+
+        noteEditPresenter = NoteEditPresenter.newInstance(this, bundle);
+
+        noteEditPresenter.show();
+
+
+        text.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                getParentFragmentManager()
-                        .popBackStack();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                editableNote.setText(text.getText().toString());
             }
         });
 
+        Toolbar.OnMenuItemClickListener menuItemClickListener = new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
 
 
-/*        getParentFragmentManager()
-                .setFragmentResultListener(NotesListFragment.NOTE_SELECTED, getViewLifecycleOwner(), new FragmentResultListener() {
-                    @Override
-                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        Log.i("BBBBB","SWITCED NOTE");
-                        Note note = result.getParcelable(EXTRA_PARAM);
-                        edit(note);
+                noteEditPresenter.action(item.getItemId(), editableNote);
+                return false;
+            }
+        };
 
 
-                    }
-                });*/
-        Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey(NotesListFragment.EXTRA_PARAM)) {
-            Note note = arguments.getParcelable(NotesListFragment.EXTRA_PARAM);
-            noteEditPresenter = new NoteEditPresenter(this, note);
-            noteEditPresenter.show();
-        } else {
-            Toast.makeText(requireContext(), "NO NOTE TO EDIT", Toast.LENGTH_SHORT).show();
-        }
+        MaterialToolbar toolbar = view.findViewById(R.id.app_bar_edit_note);
+        toolbar.setOnMenuItemClickListener(menuItemClickListener);
 
 
     }
 
+
     @Override
-    public void edit(@Nullable Note note) {
-//       View editView = getLayoutInflater().inflate(R.layout.fragment_note_edit,container,false);
+    public void show() {
 
-        EditText editText = container.findViewById(R.id.text_edit_note);
-        MaterialToolbar toolbar = container.findViewById(R.id.app_bar_edit_note);
+        if (requireActivity() instanceof NavDrawable) {
+            ((NavDrawable) requireActivity()).setAppToolbar(toolbar);
+        }
 
 
-        editText.setText(note.getText());
+        text.setText(noteEditPresenter.getNote().getText());
 
-        toolbar.setTitle(note.getDescription());
+        toolbar.setTitle(noteEditPresenter.getNote().getDescription());
+    }
+
+    @Override
+    public void message(String message) {
 
     }
 }

@@ -79,4 +79,8 @@ public class Note implements Parcelable {
         parcel.writeString(description);
         parcel.writeString(text);
     }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }

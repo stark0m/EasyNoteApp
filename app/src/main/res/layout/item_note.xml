@@ -4,27 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/note_padding"
-    android:layout_margin="@dimen/note_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/note_padding"
+    android:paddingStart="@dimen/note_padding"
+    android:paddingEnd="@dimen/note_padding"
+    android:paddingBottom="@dimen/no_dp"
+
 
     android:orientation="vertical"
 
-    android:background="@color/note_list_color">
+    android:background="@color/note_list_color"
+    android:id="@+id/id_note">
 
 
-    <TextView
-        android:id="@+id/note_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.Material3.ActionBar.Title"
 
-        tools:text="description"/>
-    <TextView
-        android:id="@+id/note_date_creation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.Compat.Notification.Info"
-        tools:text="Date"/>
 
     <TextView
         android:id="@+id/note_text"
@@ -32,6 +25,17 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         tools:text="Long text description 40length"/>
+    <TextView
+        android:id="@+id/note_date_creation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Compat.Notification.Info"
+        tools:text="Date"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawline_height"
+        android:layout_marginTop="@dimen/drawline_margine"
+        android:background="@color/white"/>
 
 </LinearLayout>
 

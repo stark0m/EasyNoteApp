@@ -1,30 +1,86 @@
 package com.example.easynoteapp;
 
-import static com.example.easynoteapp.ui.list.NotesListFragment.EXTRA_PARAM;
+import static com.example.easynoteapp.ui.listfragment.NotesListFragment.KEY_NOTE_ITEM;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.easynoteapp.R;
 import com.example.easynoteapp.domain.Note;
-import com.example.easynoteapp.ui.edit.NoteEditFragment;
-import com.example.easynoteapp.ui.list.NotesListFragment;
-import com.google.android.material.appbar.MaterialToolbar;
+import com.example.easynoteapp.ui.listfragment.NotesListFragment;
 
 public class TestClass extends Fragment {
+    /*
+    * public class ThemePresenterImpl implements ThemePresenter {
+    private Context context;
+    private SharedPreferences preferences;
+
+    private static final String SETTINGS_FILE_NAME = "THEMES";
+    private static final String THEMM_KEY = "THEME";
+
+
+
+    @Override
+    public ThemeEnum setTheme(Context context) {
+
+        preferences = context.getSharedPreferences(SETTINGS_FILE_NAME,Context.MODE_PRIVATE);
+        String savedTheme = preferences.getString(THEMM_KEY,"default");
+        ThemeEnum newTheme = ThemeEnum.ONE;
+
+        for (ThemeEnum th : ThemeEnum.values() ) {
+            if (savedTheme.equals(th.getKey())){
+                return th;
+            }
+
+        }
+        return newTheme;
+
+
+        }
+
+    @Override
+    public void saveTheme(ThemeEnum theme) {
+        preferences.edit().putString(THEMM_KEY,theme.getKey()).apply();
+    }
+
+}*/
+
+    /*        getParentFragmentManager()
+                .setFragmentResultListener(NotesListFragment.NOTE_SELECTED, getViewLifecycleOwner(), new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        Log.i("BBBBB","SWITCED NOTE");
+                        Note note = result.getParcelable(EXTRA_PARAM);
+                        edit(note);
+
+
+                    }
+                });*/
+
+    /* findViewById(R.id.open_manual).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri google = Uri.parse("https://yandex.ru");
+
+                Intent googleIntent = new Intent(Intent.ACTION_VIEW, google);
+
+                startActivity(Intent.createChooser(googleIntent, ""));
+            }
+        });
+        */
+    /*
+    Intent intent = new Intent(CalculatorActivity.this, TextInputActivity.class);
+                startActivity(intent);
+    * */
+
+
+
     /*MainActivity DrawerLayout -> fragment-> NavigationView*/
 /*PopupMenu popupMenu = new PM(requireContext(),viev);
 popupMenu.GetMenuInflater().inflate(R.menu.menuname,popumMenu.getMenu());
@@ -110,7 +166,7 @@ popupMenu.show();
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         Log.i("BBBBB", "SWITCED NOTE");
-                        Note note = result.getParcelable(EXTRA_PARAM);
+                        Note note = result.getParcelable(KEY_NOTE_ITEM);
 
 
                     }

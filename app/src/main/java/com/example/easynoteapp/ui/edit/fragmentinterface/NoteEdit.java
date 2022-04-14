@@ -1,9 +1,10 @@
-package com.example.easynoteapp.ui.edit;
+package com.example.easynoteapp.ui.edit.fragmentinterface;
 
 import androidx.annotation.Nullable;
 
 import com.example.easynoteapp.domain.Note;
 
 public interface NoteEdit {
-    void edit(@Nullable Note note);
+    void show();
+    void message(String message);
 }
