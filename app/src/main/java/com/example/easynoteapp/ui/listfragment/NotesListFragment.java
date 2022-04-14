@@ -33,20 +33,25 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public static final String NOTE_UPDATED = "NOTE_UPDATED";
     public static final String KEY_NEED_UPDATE = "KEY_NEED_UPDATE";
 
-    MaterialToolbar topToolbar;
+    private static NotesListFragment Instance;
+    private MaterialToolbar topToolbar;
     private NoteListPresenter presenter;
     private RecyclerAdapter recyclerAdapter;
 
+    private  View fragmentView;
 
-    public static NotesListFragment NewInstance(@Nullable Bundle bundle) {
-        NotesListFragment instance = new NotesListFragment();
+    public  static NotesListFragment NewInstance(@Nullable Bundle bundle) {
+        if (Instance == null) {
+            Instance = new NotesListFragment();
+        }
+
 
         if (bundle != null) {
             bundle.putBoolean(KEY_NEED_UPDATE, true);
-            instance.setArguments(bundle);
+            Instance.setArguments(bundle);
         }
 
-        return instance;
+        return Instance;
     }
 
     @Override
@@ -65,8 +70,9 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         topToolbar = view.findViewById(R.id.app_bar_list_note);
+        fragmentView = view;
 
-
+        showRecycler();
         presenter.requestNotes();
         Bundle newBundle = getArguments();
         presenter.applyArguments(newBundle);
@@ -111,8 +117,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
         }
     }
 
-    private void showRecycler(@NonNull View view) {
-        RecyclerView listNotes = view.findViewById(R.id.id_list_recycler);
+    private void showRecycler() {
+        RecyclerView listNotes = fragmentView.findViewById(R.id.id_list_recycler);
         RecyclerView.LayoutManager recyclerManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         listNotes.setLayoutManager(recyclerManager);
         recyclerAdapter = new RecyclerAdapter(this);
@@ -122,8 +128,8 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
     @Override
     public void showNotes() {
-        View view = getView();
-        showRecycler(view);
+
+
         recyclerAdapter.getData(presenter.getNotesList());
         recyclerAdapter.notifyDataSetChanged();
     }

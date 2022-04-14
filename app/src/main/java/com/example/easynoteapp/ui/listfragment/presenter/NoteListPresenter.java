@@ -6,6 +6,7 @@ import static com.example.easynoteapp.ui.listfragment.NotesListFragment.NOTE_UPD
 
 import android.os.Bundle;
 
+import com.example.easynoteapp.domain.CallBack;
 import com.example.easynoteapp.domain.Note;
 import com.example.easynoteapp.domain.NotesRepository;
 import com.example.easynoteapp.domain.NotesRepositoryImpl;
@@ -23,7 +24,7 @@ public class NoteListPresenter {
     private NotesRepository repository ;
 //    private NotesRepository repository = new NotesRepositoryImpl();
     private ArrayList<Note> notesList = new ArrayList<>();
-    int currentIndex;
+    private int currentIndex;
 
     public int getCurrentIndex() {
         return currentIndex;
@@ -54,7 +55,14 @@ public class NoteListPresenter {
         return notesList;
     }
     public void requestNotes(){
-       notesList = repository.getNotes();
+//       notesList = repository.getNotes();
+         repository.getNotes(new CallBack<ArrayList<Note>>() {
+            @Override
+            public void onSuccess(ArrayList<Note> data) {
+                notesList = data;
+                view.showNotes();
+            }
+        });
 
 
     }
@@ -74,18 +82,33 @@ public class NoteListPresenter {
 
 
     public void updateNote(Note noteUpdated, int indexNote) {
-        repository.updateNote(noteUpdated, indexNote);
-        notesList = repository.getNotes();
-
+        repository.updateNote(noteUpdated, indexNote, data -> {
+        });
+//        notesList =  repository.getNotes();
+        repository.getNotes(new CallBack<ArrayList<Note>>() {
+            @Override
+            public void onSuccess(ArrayList<Note> data) {
+                notesList = data;
+                view.showNotes();
+            }
+        });
     }
     public void deleteNote(int indexToDelete){
-        repository.deleteNote(indexToDelete);
-        notesList = repository.getNotes();
+        repository.deleteNote(indexToDelete,data -> {   });
+//        notesList = repository.getNotes();
+        repository.getNotes(new CallBack<ArrayList<Note>>() {
+            @Override
+            public void onSuccess(ArrayList<Note> data) {
+                notesList = data;
+                view.showNotes();
+            }
+        });
     }
+
 
     public void addNote() {
         Note newNote = new Note(UUID.randomUUID().toString(), "New Description", "");
-        repository.addNote(newNote,0);
+        repository.addNote(newNote,0,data -> {   });
         goEditNote(0);
     }
 }

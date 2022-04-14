@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class NotesRepositoryImpl implements NotesRepository {
+public class NotesRepositoryImpl {
+
+}
+/*public class NotesRepositoryImpl implements NotesRepository {
     private static final NotesRepository INSTANCE = new NotesRepositoryImpl();
 
     ArrayList<Note> notesList = new ArrayList<>();
@@ -46,4 +49,4 @@ public class NotesRepositoryImpl implements NotesRepository {
 
         notesList.add(index, note);
     }
-}
+}*/
