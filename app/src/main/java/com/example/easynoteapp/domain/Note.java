@@ -25,6 +25,12 @@ public class Note implements Parcelable {
         this.date = new Date();
         this.text = inputText;
     }
+    public Note(String id, Date date, String inputText) {
+        this.id = id;
+        this.description = "description";
+        this.date = date;
+        this.text = inputText;
+    }
 
     protected Note(Parcel in) {
         id = in.readString();

@@ -86,6 +86,11 @@ public class SharedNotesRepositoryImpl implements NotesRepository {
     }
 
     @Override
+    public void deleteNote(Note note, CallBack<Void> callback) {
+
+    }
+
+    @Override
     public void addNote(Note note, int index, CallBack<Void> callback) {
         Type notesType = new TypeToken<ArrayList<Note>>() {
         }.getType();

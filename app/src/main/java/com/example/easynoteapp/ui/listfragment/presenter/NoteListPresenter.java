@@ -7,6 +7,7 @@ import static com.example.easynoteapp.ui.listfragment.NotesListFragment.NOTE_UPD
 import android.os.Bundle;
 
 import com.example.easynoteapp.domain.CallBack;
+import com.example.easynoteapp.domain.FirestoreRepositiryImpl;
 import com.example.easynoteapp.domain.Note;
 import com.example.easynoteapp.domain.NotesRepository;
 import com.example.easynoteapp.domain.NotesRepositoryImpl;
@@ -49,6 +50,7 @@ public class NoteListPresenter {
     public NoteListPresenter(NotesListFragment view) {
         this.view = view;
         repository = new SharedNotesRepositoryImpl(view.requireContext());
+        repository = FirestoreRepositiryImpl.INSTANCE;
     }
 
     public ArrayList<Note> getNotesList(){
@@ -94,7 +96,8 @@ public class NoteListPresenter {
         });
     }
     public void deleteNote(int indexToDelete){
-        repository.deleteNote(indexToDelete,data -> {   });
+//        repository.deleteNote(indexToDelete,data -> {   });
+        repository.deleteNote(notesList.get(indexToDelete),data -> {   });
 //        notesList = repository.getNotes();
         repository.getNotes(new CallBack<ArrayList<Note>>() {
             @Override
