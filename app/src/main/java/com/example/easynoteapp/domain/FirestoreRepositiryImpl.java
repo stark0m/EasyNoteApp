@@ -125,7 +125,7 @@ public class FirestoreRepositiryImpl implements NotesRepository {
                         }
 
 
-                        db.collection((NOTES))
+                        db.collection(NOTES)
                                 .document(toDeleteId[0])
                                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

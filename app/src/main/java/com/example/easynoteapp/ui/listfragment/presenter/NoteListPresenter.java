@@ -50,7 +50,7 @@ public class NoteListPresenter {
     public NoteListPresenter(NotesListFragment view) {
         this.view = view;
         repository = new SharedNotesRepositoryImpl(view.requireContext());
-        repository = FirestoreRepositiryImpl.INSTANCE;
+//        repository = FirestoreRepositiryImpl.INSTANCE;
     }
 
     public ArrayList<Note> getNotesList(){

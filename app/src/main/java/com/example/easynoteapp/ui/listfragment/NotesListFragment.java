@@ -86,6 +86,7 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
         recyclerAdapter.setiC(new RecyclerAdapter.ItemClicked() {
             @Override
+
             public void onItemClicked(int index) {
                 presenter.goEditNote(index);
                 return;
